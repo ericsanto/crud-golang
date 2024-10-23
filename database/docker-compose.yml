@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+      POSTGRES_USER: ${PSQL_USER}
+      POSTGRES_DB: ${PSQL_NAME}
+      POSTGRES_HOST: ${PSQL_HOST}
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+
+volumes:
+  pgdata:
