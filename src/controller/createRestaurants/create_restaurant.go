@@ -2,7 +2,7 @@ package createRestaurants
 
 import (
 	"crud-golanfg/src/controller/model/request"
-	"crud-golanfg/src/controller/model/response"
+	"crud-golanfg/src/views"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -22,15 +22,7 @@ func CreateRestaurant(c *gin.Context) {
 		return
 	}
 
-	restaurantResponse := response.RestaurantResponse{
-		ID:            1,
-		Name:          restaurantRequest.Name,
-		Address:       restaurantRequest.Address.Street + ", " + restaurantRequest.Address.Number + ", " + restaurantRequest.Address.City + "/" + restaurantRequest.Address.State,
-		Telephone:     restaurantRequest.Telephone,
-		TypeOfKitchen: restaurantRequest.TypeOfKitchen,
-		OpeningHours:  restaurantRequest.OpeningHours,
-		Capacity:      restaurantRequest.Capacity,
-	}
+	response := views.NewResponseRequest(restaurantRequest)
 
-	c.JSON(http.StatusOK, restaurantResponse)
+	c.JSON(http.StatusOK, response)
 }
